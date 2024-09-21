@@ -1,6 +1,165 @@
-/******* Change Box Model ***************/
+****** Change Box Model **************
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+:root {
+  --light-blue: #78C0E0;
+  --blue: #449DD1;
+  --dark-blue: #150578;
+}
+
+html{
+  font-size: 16px;
+}
+
+body {
+  font-family: "Roboto", system-ui;
+  margin: 0;
+  color: #000;
+  background-color: #fff;
+}
+
+#wrapper {
+  max-width: 960px;
+  background-color: #fff;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem;
+}
+
+#top-header a, a:hover, a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+main {
+  margin: 0rem .5rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.siteName{
+  font-size: 2.5rem;
+}
+
+nav ul {
+  background-color: #000;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  padding: .5rem;
+}
+
+nav li {
+  color: #fff;
+}
+
+nav a:hover {
+  color: var(--light-blue);
+}
+
+.jumbotron {
+  position: relative;
+}
+
+.jumbotron-content {
+  position: absolute;
+  background-color: rgba(21,5,120,85%);
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.jumbotron-content button {
+  background-color: var(--light-blue);
+  color: #000;
+  padding: .75rem;
+  /* border-radius: 10px; */
+  border: 0;
+}
+
+.jumbotron-title {
+  font-size: 1.5rem;
+}
+
+.jumbotron ul {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.jumbotron img {
+  width: 100%;
+}
+
+.main-grid {
+  display: grid;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid.main {
+  grid-template-columns: 1fr 1fr;
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.img-wrapper {
+  background-color: var(--light-blue);
+  width: 100%;
+  flex: 1;
+}
+figcaption {
+  text-align: center;
+  background-color: #fff;
+}
+figure img {
+  margin: .5rem auto 0;
+  width: 65px;
+}
+
+footer {
+  padding: 0 .5rem;
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    background-image: url("../images/site/checkerboard.jpg");
+  }
+
+  #wrapper {
+    margin: 2rem auto;
+    border: .5rem solid var(--blue);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .jumbotron-content {
+    top: 25%;
+    left: 15%;
+    font-size: 1.5rem;
+  }
+
+  .jumbotron-title {
+    font-size: 2rem;
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
