@@ -9,6 +9,8 @@
   --light-blue: #78C0E0;
   --blue: #449DD1;
   --dark-blue: #150578;
+  --white: #fff;
+  --black: #000;
 }
 
 html{
@@ -18,13 +20,14 @@ html{
 body {
   font-family: "Roboto", system-ui;
   margin: 0;
-  color: #000;
-  background-color: #fff;
+  color: var(--black);
+  background-color: var(--white);
 }
 
 #wrapper {
   max-width: 960px;
-  background-color: #fff;
+  background-color: var(--white);
+  color: var(--black);
 }
 
 #top-header {
@@ -36,7 +39,8 @@ body {
 
 #top-header a, a:hover, a:visited {
   text-decoration: none;
-  color: #000;
+  color: var(--black);
+  background-color: var(--white);
 }
 
 main {
@@ -53,19 +57,17 @@ h1 {
 }
 
 nav ul {
-  background-color: #000;
+  background-color: var(--black);
   list-style: none;
   display: flex;
   justify-content: space-evenly;
   padding: .5rem;
-}
-
-nav li {
-  color: #fff;
+  color: var(--white);
 }
 
 nav a:hover {
   color: var(--light-blue);
+  background-color: var(--black);
 }
 
 .jumbotron {
@@ -77,12 +79,12 @@ nav a:hover {
   background-color: rgba(21,5,120,85%);
   padding: 1rem 2rem;
   font-size: 1rem;
-  color: #fff;
+  color: var(--white);
 }
 
 .jumbotron-content button {
   background-color: var(--light-blue);
-  color: #000;
+  color: var(--black);
   padding: .75rem;
   /* border-radius: 10px; */
   border: 0;
@@ -121,12 +123,14 @@ figure {
 }
 .img-wrapper {
   background-color: var(--light-blue);
+  color: var(--white);
   width: 100%;
   flex: 1;
 }
 figcaption {
   text-align: center;
-  background-color: #fff;
+  background-color: var(--white);
+  color: var(--black);
 }
 figure img {
   margin: .5rem auto 0;
@@ -152,11 +156,11 @@ footer {
   .jumbotron-content {
     top: 25%;
     left: 15%;
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
   }
 
   .jumbotron-title {
-    font-size: 2rem;
+    /* font-size: 2rem; */
   }
 
   .main-grid {
