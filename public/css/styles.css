@@ -30,7 +30,7 @@ body {
   padding: .5rem;
 }
 
-#top-header a, a:hover, a:visited {
+#top-header a,#top-header a:hover,#top-header a:visited {
   text-decoration: none;
   color: var(--black);
   background-color: var(--white);
@@ -61,6 +61,12 @@ nav ul {
 nav a:hover {
   color: var(--light-blue);
   background-color: var(--black);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--white);
+  background-color: var((--black));
 }
 
 .jumbotron {
@@ -129,7 +135,25 @@ figure img {
   margin: .5rem auto 0;
   width: 65px;
 }
-
+#inv-display {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+#inv-display li {
+  border: 1px solid  var(--black);
+  padding: 1rem;
+  border-radius: 10px;
+}
+#inv-display h2 {
+  margin: 0;
+  padding: 0;
+}
+#inv-display img {
+  width: 100%;
+}
 footer {
   padding: 0 .5rem;
 }
@@ -159,4 +183,20 @@ footer {
   .main-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  #inv-display {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #inv-display li {
+    display: flex;
+    flex-direction: column;
+  }
+  #inv-display a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
 }
