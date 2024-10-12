@@ -157,6 +157,18 @@ figure img {
 footer {
   padding: 0 .5rem;
 }
+.detail-wrapper img {
+  width: 100%;
+}
+.detail-wrapper label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.detail-wrapper p {
+  margin: 0;
+  padding: 0;
+}
 
 @media screen and (min-width: 600px) {
   body {
@@ -198,5 +210,9 @@ footer {
     flex-direction: column;
     justify-content: space-around;
   }
-  
+  .detail-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }
