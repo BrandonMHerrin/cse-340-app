@@ -154,6 +154,10 @@ figure img {
 #inv-display img {
   width: 100%;
 }
+#inv-display a {
+  text-decoration: none;
+  color: var(--black);
+}
 footer {
   padding: 0 .5rem;
 }
