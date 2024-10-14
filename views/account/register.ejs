@@ -1,13 +1,11 @@
 <h1><%= title %></h1>
 
-<%- messages() %>
-
-<% if (errors) { %>
-    <ul class="notice">
-<% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-<% }) %>
-    </ul>
+<%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
 <% } %>
 
 <form
@@ -18,15 +16,30 @@
 >
   <label
     >First name<span class="required-field">*</span>
-    <input type="text" id="account_firstname" name="account_firstname" required
+    <input
+      type="text"
+      id="account_firstname"
+      name="account_firstname"
+      required
+      value="<%= locals.account_firstname %>"
   /></label>
   <label
     >Last name<span class="required-field">*</span>
-    <input type="text" id="account_lastname" name="account_lastname" required
+    <input
+      type="text"
+      id="account_lastname"
+      name="account_lastname"
+      required
+      value="<%= locals.account_lastname %>"
   /></label>
   <label
     >Email<span class="required-field">*</span>
-    <input type="email" id="account_email" name="account_email" required
+    <input
+      type="email"
+      id="account_email"
+      name="account_email"
+      required
+      value="<%= locals.account_email %>"
   /></label>
   <label
     >Password<span class="required-field">*</span>
