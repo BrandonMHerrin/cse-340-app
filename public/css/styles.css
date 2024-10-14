@@ -4,6 +4,8 @@
   --dark-blue: #150578;
   --white: #fff;
   --black: #000;
+  --red: #C32F27;
+  box-sizing: border-box;
 }
 
 html{
@@ -172,6 +174,38 @@ footer {
 .detail-wrapper p {
   margin: 0;
   padding: 0;
+}
+
+.account-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1rem auto 0;
+  max-width: 450px;
+}
+
+.account-form label {
+  font-size: 1.2rem;
+}
+
+.account-form input {
+  display: block;
+}
+
+.account-form input[type="email"], .account-form input[type="password"], .account-form input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: .5rem;
+}
+.account-form input[type="submit"] {
+  width: 150px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: .5rem;
+  border-radius: 15px;
+}
+.required-field {
+  color: var(--red);
 }
 
 @media screen and (min-width: 600px) {
