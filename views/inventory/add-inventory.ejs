@@ -1,0 +1,98 @@
+<h1><%= title %></h1>
+
+<%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<form action="/inv/add-inventory" method="post" id="add-inventory-form">
+  <label
+    >Make
+    <input
+      type="text"
+      name="inv_make"
+      id="invMake"
+      value="<%= locals.inv_make %>"
+      required
+  /></label>
+  <label
+    >Model
+    <input
+      type="text"
+      name="inv_model"
+      id="invModel"
+      value="<%= locals.inv_model %>"
+      required
+  /></label>
+  <label
+    >Year
+    <input
+      type="text"
+      name="inv_year"
+      id="invYear"
+      pattern="^(19|20)[\d]{2}$"
+      value="<%= locals.inv_year %>"
+      required
+  /></label>
+  <label
+    >Description
+    <input
+      type="text"
+      name="inv_description"
+      id="invDescription"
+      value="<%= locals.inv_description %>"
+      required
+  /></label>
+  <label
+    >Image
+    <input
+      type="text"
+      name="inv_image"
+      id="invImage"
+      value="/images/vehicles/no-image.png"
+      readonly
+  /></label>
+  <label
+    >Thumbnail
+    <input
+      type="text"
+      name="inv_thumbnail"
+      id="invThumbnail"
+      value="/images/vehicles/no-image-tn.png"
+      readonly
+  /></label>
+  <label
+    >Price
+    <input
+      type="number"
+      name="inv_price"
+      id="invPrice"
+      min="0"
+      value="<%= locals.inv_price %>"
+      required
+  /></label>
+  <label
+    >Miles
+    <input
+      type="number"
+      name="inv_miles"
+      id="invMiles"
+      min="0"
+      value="<%= locals.inv_miles %>"
+      required
+  /></label>
+  <label
+    >Color
+    <input
+      type="text"
+      name="inv_color"
+      id="invColor"
+      value="<%= locals.inv_color %>"
+      required
+  /></label>
+  <label>Classification <%- classificationList %></label>
+  <input type="submit" value="Add Inventory" />
+</form>
