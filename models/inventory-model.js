@@ -44,7 +44,7 @@ async function getInventoryItemById(inventory_id) {
                 `,
       [inventory_id]
     );
-    return data.rows;
+    return data.rows[0];
   } catch (error) {
     console.error("getinventorybyid error ", error);
   }
@@ -112,10 +112,46 @@ async function addInventory(params) {
     }
 }
 
+/**
+ * Update Inventory Item
+ */
+async function updateInventory(params) {
+    try {
+        const sql = `
+            UPDATE inventory
+            SET inv_make = $1
+                ,inv_model = $2
+                ,inv_description = $3
+                ,inv_price = $4
+                ,inv_miles = $5
+                ,inv_color = $6
+                ,inv_thumbnail = $7
+                ,inv_year = $8
+            WHERE inv_id = $9
+            RETURNING *
+        `;
+        const data = await pool.query(sql, [
+            params.inv_make,
+            params.inv_model,
+            params.inv_description,
+            params.inv_price,
+            params.inv_miles,
+            params.inv_color,
+            params.classification_id,
+            params.inv_year,
+            params.inv_id
+        ])
+        return data.rows[0];
+    } catch (error) {
+        console.error("model error: " + error); 
+    }
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getInventoryItemById,
   addClassification,
-  addInventory
+  addInventory,
+  updateInventory,
 };
