@@ -239,6 +239,14 @@ form input[type="submit"] {
   border-radius: 10px;
 }
 
+.btn {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: .5rem;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
 @media screen and (min-width: 600px) {
   body {
     background-image: url("../images/site/checkerboard.jpg");

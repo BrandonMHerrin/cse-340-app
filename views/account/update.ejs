@@ -1,0 +1,56 @@
+<h1><%= title %></h1>
+
+<%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<h2>Account Update</h2>
+<form action="/account/update" method="post" id="update-account">
+  <label
+    >First Name<input
+      type="text"
+      name="account_firstname"
+      id="accountFirstname"
+      value="<%= locals.account_firstname %>"
+      required
+  /></label>
+  <label
+    >Last Name<input
+      type="text"
+      name="account_lastname"
+      id="accountLastname"
+      value="<%= locals.account_lastname %>"
+      required
+  /></label>
+  <label
+    >Email<input
+      type="email"
+      name="account_email"
+      id="accountEmail"
+      value="<%= locals.account_email %>"
+      required
+  /></label>
+  <input type="submit" value="Update Account" />
+  <input type="hidden" name="account_id" value="<%= locals.account_id %>" />
+</form>
+
+<h2>Change Password</h2>
+<p>By entering a passord here you will be changing your passord.</p>
+<form action="/account/password-update" method="post" id="password-update">
+  <label
+    >Password<input
+      type="password"
+      name="account_password"
+      id="accountPassword"
+      required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+    />Password must be 12 characters long, contain 1 upper-case, 1 special
+    character, and 1 number.</label
+  >
+  <input type="submit" value="Change Password" />
+  <input type="hidden" value="<%= locals.account_id %>" name="account_id" />
+</form>

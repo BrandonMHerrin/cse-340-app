@@ -103,7 +103,10 @@ async function accountLogin(req, res) {
     return;
   }
   try {
-    const result = await bcrypt.compare(account_password, accountData.account_password);
+    const result = await bcrypt.compare(
+      account_password,
+      accountData.account_password
+    );
     if (result) {
       delete accountData.account_password;
       const access_token = jwt.sign(
@@ -142,10 +145,131 @@ async function buildAccount(req, res, next) {
   });
 }
 
+/**
+ * Logout the user
+ */
+async function logoutUser(req, res, next) {
+  res.clearCookie("jwt");
+  res.status(204).send();
+}
+
+/**
+ * Build the account update view
+ */
+async function buildUpdateView(req, res, next) {
+  let nav = await utilities.getNav();
+  const accountData = await model.getAccountById(req.params.account_id);
+  res.render("account/update", {
+    title: "Update Account",
+    errors: null,
+    nav,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email,
+    account_id: accountData.account_id,
+  });
+}
+
+/**
+ * Process the update
+ */
+async function updateAccount(req, res, next) {
+  let nav = await utilities.getNav();
+
+  const update = {
+    account_id: req.body.account_id,
+    account_firstname: req.body.account_firstname,
+    account_lastname: req.body.account_lastname,
+    account_email: req.body.account_email,
+  };
+
+  const updateResult = await model.updateAccount(update);
+
+  if (updateResult) {
+    req.flash("notice", "Congratulations, your account has been updated.");
+    res.status(200).render("account/account", {
+      title: "Account",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash("notice", "Sorry, the udpate failed.");
+    const accountData = await model.getAccountById(update.account_id);
+    res.status(501).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+      account_id,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+    });
+  }
+}
+
+/**
+ * Process the password update
+ */
+async function updatePassword(req, res, next) {
+  let nav = await utilities.getNav();
+
+  const { account_id, account_password } = req.body;
+
+  // Hash the password before storing
+  let hashedPassword;
+  try {
+    // regular password and cost(salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10);
+  } catch (error) {
+    const { account_firstname, account_lastname, account_email } =
+      await model.getAccountById(account_id);
+    req.flash("notice", "Sorry, there was an error updating your password.");
+    res.status(500).render("account/update", {
+      title: "Registration",
+      nav,
+      errors: null,
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+  }
+
+  const passwordUpdateResult = await model.updatePassword(
+    account_id,
+    hashedPassword
+  );
+
+  if (passwordUpdateResult) {
+    req.flash("notice", "Congratulations, your password has been updated.");
+    res.status(200).render("account/account", {
+      title: "Account",
+      nav,
+      errors: null,
+    });
+  } else {
+    req.flash("notice", "Sorry, the udpate failed.");
+    const accountData = await model.getAccountById(update.account_id);
+    res.status(501).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors: null,
+      account_id,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+    });
+  }
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
   registerAccount,
   accountLogin,
   buildAccount,
+  logoutUser,
+  buildUpdateView,
+  updateAccount,
+  updatePassword
 };

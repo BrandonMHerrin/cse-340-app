@@ -8,4 +8,9 @@
 </ul>
 <% } %>
 
-<p>You're logged in.</p>
+<h2>Welcome <%- locals.account_data.account_firstname %>!</h2>
+<p><a class="btn" title="Click here to update your account" href="/account/update/<%= locals.account_data.account_id %>">Update Account</a></p>
+<% if(locals.account_data.account_type === "Employee" || locals.account_data.account_type === "Admin") {%>
+  <h3>Inventory Management</h3>
+  <p><a class="btn" title="Click here to go to the Inventory Management page" href="/inv/">Inventory Management</a></p>
+<% } %>

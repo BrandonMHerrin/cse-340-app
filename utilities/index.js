@@ -158,4 +158,16 @@ Util.checkLogin = (req, res, next) => {
     }
 }
 
+/**
+ * Check if User has elevated permissions
+ */
+Util.checkElevated = (req, res, next) => {
+    if (res.locals.account_data.account_type === 'Employee' || res.locals.account_data.account_type === 'Admin') {
+        next();
+    } else {
+        req.flash("notice", "You don't have permission to access that page.");
+        return res.redirect("/account/login");
+    }
+}
+
 module.exports = Util;
