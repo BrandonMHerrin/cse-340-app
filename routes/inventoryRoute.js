@@ -15,7 +15,11 @@ router.get(
 router.get("/detail/:invId", Util.handleErrors(invController.buildByInvId));
 
 // Route to build management view
-router.get("/", Util.checkElevated, Util.handleErrors(invController.buildManagement));
+router.get(
+  "/",
+  Util.checkElevated,
+  Util.handleErrors(invController.buildManagement)
+);
 
 // Route to build create classification form
 router.get(
@@ -56,7 +60,11 @@ router.get(
 );
 
 // Route to build Inventory Edit View
-router.get("/edit/:inv_id", Util.checkElevated, Util.handleErrors(invController.buildEditView));
+router.get(
+  "/edit/:inv_id",
+  Util.checkElevated,
+  Util.handleErrors(invController.buildEditView)
+);
 
 // Route to process Inventory Edit form submission
 router.post(
@@ -68,9 +76,40 @@ router.post(
 );
 
 // Route to build inventory delete view
-router.get("/delete/:inv_id", Util.checkElevated, Util.handleErrors(invController.buildDeleteView));
+router.get(
+  "/delete/:inv_id",
+  Util.checkElevated,
+  Util.handleErrors(invController.buildDeleteView)
+);
 
 // Route to delete an inventory item
-router.post("/delete/", Util.checkElevated, Util.handleErrors(invController.deleteInventory));
+router.post(
+  "/delete/",
+  Util.checkElevated,
+  Util.handleErrors(invController.deleteInventory)
+);
+
+// Route to build inquiry view
+router.get(
+  "/inquiry/:inv_id",
+  Util.handleErrors(invController.buildInquiryView)
+);
+
+// Route to send inquiry
+router.post(
+  "/inquiry",
+  managementValidation.inquiryRules(),
+  managementValidation.checkInquiryData,
+  Util.handleErrors(invController.submitInquiry)
+);
+
+// Route to manage inquiries
+router.get("/inquiries", Util.handleErrors(invController.buildInquiriesView));
+
+// Route to delete inquiries
+router.delete(
+  "/inquiry/:inquiry_id",
+  Util.handleErrors(invController.deleteInquiry)
+);
 
 module.exports = router;

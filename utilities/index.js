@@ -87,6 +87,8 @@ Util.buildItemDetail = async function(details) {
                     <p><label>Model:</label> ${details.inv_model}</p>
                     <p><label>Color:</label> ${details.inv_color}</p>
                     <p><label>Miles:</label> ${new Intl.NumberFormat('en-US').format(details.inv_miles)}</p>
+                    <br>
+                    <a class="btn" href="/inv/inquiry/${details.inv_id}">Send Inquiry</a>
                 </div>
             </div>
         `;

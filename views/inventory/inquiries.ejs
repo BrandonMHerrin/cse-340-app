@@ -1,0 +1,42 @@
+<h1><%= title %></h1>
+
+<%- messages() %> <% if (locals.inquiries.length === 0) { %>
+<p>There are now inquiries to process.</p>
+<% } else { %>
+<script src="/js/inquiries.js"></script>
+<div id="inquiries-table-wrapper">
+  <table id="inquiries-table">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>First</td>
+        <td>Last</td>
+        <td>Phone</td>
+        <td>Email</td>
+        <td>Message</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i = 0; i < locals.inquiries.length; i++) { %>
+      <tr>
+        <td><%= inquiries[i].inquiry_id %></td>
+        <td><%= inquiries[i].inquiry_firstname %></td>
+        <td><%= inquiries[i].inquiry_lastname %></td>
+        <td><%= inquiries[i].inquiry_phone %></td>
+        <td><%= inquiries[i].inquiry_email %></td>
+        <td><%= inquiries[i].inquiry_message %></td>
+        <td>
+          <button
+            class="btn"
+            onclick="deleteInquiry(<%= inquiries[i].inquiry_id %>)"
+          >
+            X
+          </button>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<% } %>

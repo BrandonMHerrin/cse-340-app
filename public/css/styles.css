@@ -196,7 +196,7 @@ label input {
   margin-top: .1rem;
 }
 
-form input[type="email"], form input[type="password"], form input[type="text"], form input[type="number"], form select {
+form input[type="email"], form input[type="password"], form input[type="text"], form input[type="number"], form select, form textarea {
   width: 100%;
   box-sizing: border-box;
   padding: .5rem;
@@ -245,6 +245,15 @@ form input[type="submit"] {
   padding: .5rem;
   text-decoration: none;
   border-radius: 15px;
+  box-sizing: border-box;
+}
+
+#inquiries-table-wrapper {
+  overflow-x: auto;
+}
+
+#inquiries-table {
+  width: 100%;
 }
 
 @media screen and (min-width: 600px) {

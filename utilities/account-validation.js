@@ -172,7 +172,7 @@ validate.accountUpdateRules = () => {
           );
           if (emailExists) {
             throw new Error(
-              "Email exists. Please use a different email."
+              "Email exists. release use a different email."
             );
           }
         }

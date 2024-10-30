@@ -1,0 +1,70 @@
+<h1><%= title %></h1>
+
+<%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<p>
+  Feel free to send us an inquiry about the <%= itemDetails.inv_year %> <%=
+  itemDetails.inv_make %> <%= itemDetails.inv_model %>.
+</p>
+
+<form action="/inv/inquiry" method="post" id="sendInquiry">
+  <label
+    >First Name
+    <input
+      name="inquiry_firstname"
+      id="inquiryFirstname"
+      type="text"
+      required
+      value="<%= locals.inquiry_firstname %>"
+  /></label>
+  <label
+    >Last Name
+    <input
+      name="inquiry_lastname"
+      id="inquiryLastname"
+      type="text"
+      required
+      value="<%= locals.inquiry_lastname %>"
+  /></label>
+  <label
+    >Phone Number
+    <input
+      name="inquiry_phone"
+      id="inquiryPhone"
+      type="text"
+      pattern="^\([0-9]{3}\)[0-9]{3}-[0-9]{4}$"
+      placeholder="(xxx)xxx-xxxx"
+      required
+      value="<%= locals.inquiry_phone %>"
+    />
+    Use the following format: (xxx)xxx-xxxx.
+  </label>
+  <label
+    >Email
+    <input
+      name="inquiry_email"
+      id="inquiryEmail"
+      type="email"
+      required
+      value="<%= locals.inquiry_email %>"
+  /></label>
+  <label
+    >Message
+    <textarea rows="5" name="inquiry_message" id="inquiryMessage" required>
+<%= locals.inquiry_message %></textarea
+    >
+  </label>
+  <input type="submit" value="Send Inquiry" />
+  <input
+    type="hidden"
+    name="inv_id"
+    id="invId"
+    value="<%= locals.itemDetails.inv_id %>"
+  />
+</form>
